@@ -36,7 +36,7 @@ namespace App1
 
         private async void Init()
         {
-            await Task.Delay(2000);
+            await Task.Delay(4000);
             // Wait for server to listen
 
             var hub = new HubConnectionBuilder()
