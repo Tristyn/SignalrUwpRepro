@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/App1/App1_TemporaryKey.pfx
+/WebApplication1/appsettings.Development.json
+/WebApplication1/obj
+/WebApplication1/bin
+/App1/obj
+/App1/bin
