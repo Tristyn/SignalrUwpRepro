@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -28,7 +29,7 @@ namespace App1
         public MainPage()
         {
             this.InitializeComponent();
-            
+
             Init();
 
             Debug.Assert(true);
@@ -36,11 +37,28 @@ namespace App1
 
         private async void Init()
         {
+            Console.WriteLine("Test");
+            Console.WriteLine("Test");
+            Console.WriteLine("Test");
             await Task.Delay(4000);
             // Wait for server to listen
 
             var hub = new HubConnectionBuilder()
                 .WithUrl("http://localhost:5000/api/v1/myhub")
+                .ConfigureLogging(logging =>
+                {
+                    logging.AddDebug();
+                    // Choose one of the below:
+
+                    // This will set ALL logging to Debug level
+                    logging.SetMinimumLevel(LogLevel.Debug);
+
+        // Alternatively, you can set the default verbosity to something less noisy and
+        // only turn up the SignalR loggers
+                    //logging.SetMinimumLevel(LogLevel.Information);
+                    //logging.AddFilter("Microsoft.AspNetCore.SignalR", LogLevel.Debug);
+                    //logging.AddFilter("Microsoft.AspNetCore.Http.Connections", LogLevel.Debug);
+                })
                 .Build();
 
             await hub.StartAsync();
